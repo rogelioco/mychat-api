@@ -190,13 +190,9 @@ export const resolvers = {
             const chat = await Chat.findById(_idChat);
             
             if(!chat.guest.includes(_idUser)) {
-                console.log('no existe');
                 chat.guest.push(_idUser);
                 chat.save();
-            }else {
-                console.log('existe');
             }
-            console.log('add')
 
             return chat;
         },
@@ -212,7 +208,6 @@ export const resolvers = {
             const user = await User.findById(_idUser);
             user.save();
 
-            console.log('remove');
 
             return chat;
         },
@@ -243,8 +238,6 @@ export const resolvers = {
                 throw new Error('Unautheticated!');
             }
             
-            // console.log(input)
-
             await Message.insertMany(input);
             
             const idChat = input[0].chat;
